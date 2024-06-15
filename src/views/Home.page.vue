@@ -74,7 +74,7 @@ const umkmListcomputed = computed(()=> {
     <div
       class="container-hero h-[calc(100dvh-4rem)] w-full flex flex-col items-center justify-center gap-3 text-white pb-16">
       <p class="text-2xl">Selamat datang di</p>
-      <h1 class="text-7xl font-semibold">Desa Wisata Margamulya</h1>
+      <h1 class="text-7xl font-bold font-abhaya">Desa Wisata Margamulya</h1>
       <button class="btn mt-8 hover:bg-white hover:text-darkGreen transition-colors duration-300">Jelajahi</button>
     </div>
 

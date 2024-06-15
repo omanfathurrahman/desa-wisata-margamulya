@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
   content: [
@@ -9,6 +10,10 @@ export default {
     extend: {
       colors: {
         'darkGreen': '#3A5331',
+      },
+      fontFamily: {
+        'sans': ['"Montserrat"', ...defaultTheme.fontFamily.sans],
+        'abhaya': ['"Abhaya Libre"'],
       }
     },
   },
