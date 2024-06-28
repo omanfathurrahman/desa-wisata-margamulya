@@ -1,3 +1,28 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const center = ref([107.46121518230963, -7.132045562984563])
+const projection = ref('EPSG:4326')
+const zoom = ref(14.02)
+const rotation = ref(0)
+
+const currentCenter = ref(center.value)
+const currentZoom = ref(zoom.value)
+const currentRotation = ref(rotation.value)
+const currentResolution = ref(0)
+
+function resolutionChanged(event: Event) {
+  currentResolution.value = (event.target as any).getResolution()
+  currentZoom.value = (event.target as any).getZoom()
+}
+function centerChanged(event: Event) {
+  currentCenter.value = (event.target as any).getCenter()
+}
+function rotationChanged(event: Event) {
+  currentRotation.value = (event.target as any).getRotation()
+}
+</script>
+
 <template>
   <!-- <form>
     <label for="zoom">Zoom:</label>
@@ -7,7 +32,6 @@
   <div class="border border-zinc-400 rounded-xl overflow-hidden">
     <ol-map style="height: 400px">
       <ol-view
-        ref="view"
         :center="center"
         :rotation="rotation"
         :zoom="zoom"
@@ -16,12 +40,12 @@
         @change:resolution="resolutionChanged"
         @change:rotation="rotationChanged"
       />
-  
+
       <ol-tile-layer>
         <ol-source-osm />
       </ol-tile-layer>
-  
-      <ol-rotate-control></ol-rotate-control>
+
+      <ol-rotate-control />
       <ol-interaction-link />
     </ol-map>
   </div>
@@ -33,31 +57,6 @@
     <li>rotation : {{ currentRotation }}</li>
   </ul> -->
 </template>
-
-<script setup lang="ts">
-import { ref } from "vue";
-
-const center = ref([ 107.46121518230963, -7.132045562984563 ]);
-const projection = ref("EPSG:4326");
-const zoom = ref(14.02);
-const rotation = ref(0);
-
-const currentCenter = ref(center.value);
-const currentZoom = ref(zoom.value);
-const currentRotation = ref(rotation.value);
-const currentResolution = ref(0);
-
-function resolutionChanged(event: Event) {
-  currentResolution.value = (event.target as any).getResolution();
-  currentZoom.value = (event.target as any).getZoom();
-}
-function centerChanged(event: Event) {
-  currentCenter.value = (event.target as any).getCenter();
-}
-function rotationChanged(event: Event) {
-  currentRotation.value = (event.target as any).getRotation();
-}
-</script>
 
 <style scoped>
 .ol-map {
